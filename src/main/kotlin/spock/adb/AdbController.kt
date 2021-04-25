@@ -23,7 +23,6 @@ interface AdbController {
     fun revokePermission(device: IDevice, permissionListItem: PermissionListItem, success:(message:String)->Unit, error:(message:String)->Unit)
     fun grantPermission(device: IDevice, permissionListItem: PermissionListItem, success:(message:String)->Unit, error:(message:String)->Unit)
     fun connectDeviceOverIp(ip:String, success:(message:String)->Unit, error:(message:String)->Unit)
-    fun enableDisableDontKeepActivities(device: IDevice,success:(message:String)->Unit,error:(message:String)->Unit)
     fun enableDisableShowTaps(device: IDevice,success:(message:String)->Unit,error:(message:String)->Unit)
     fun enableDisableShowLayoutBounds(device: IDevice,success:(message:String)->Unit,error:(message:String)->Unit)
     fun setWindowAnimatorScale(scale: String, device: IDevice,success:(message:String)->Unit,error:(message:String)->Unit)
@@ -31,4 +30,5 @@ interface AdbController {
     fun setAnimatorDurationScale(scale: String, device: IDevice,success:(message:String)->Unit,error:(message:String)->Unit)
     fun toggleNetwork(device: IDevice, network: Network, success: (message: String) -> Unit, error: (message: String) -> Unit)
     fun inputOnDevice(input: String, device: IDevice, success: (message: String) -> Unit, error: (message: String) -> Unit)
+    fun openDeveloperOptions(device: IDevice,success:(message:String)->Unit,error:(message:String)->Unit)
 }

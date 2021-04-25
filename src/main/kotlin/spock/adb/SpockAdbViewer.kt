@@ -48,6 +48,7 @@ class SpockAdbViewer(
     private lateinit var mobileDataToggle: JButton
     private lateinit var inputOnDeviceTextField: JTextField
     private lateinit var inputOnDeviceButton: JButton
+    private lateinit var openDeveloperOptionsButton: JButton
     private var selectedIDevice: IDevice? = null
     private val notifier: NotificationGroup by lazy {
         NotificationGroup("Spock_ADB",
@@ -55,12 +56,6 @@ class SpockAdbViewer(
     }
 
     private lateinit var adbController: AdbController
-
-    private val dontKeepActivitiesActionListener: (ActionEvent) -> Unit = {
-        selectedIDevice?.let { device ->
-            adbController.enableDisableDontKeepActivities(device, ::showSuccess, ::showError)
-        }
-    }
 
     private val showTapsActionListener: (ActionEvent) -> Unit = {
         selectedIDevice?.let { device ->
@@ -241,6 +236,11 @@ class SpockAdbViewer(
             }
         }
         inputOnDeviceTextField.addActionListener { inputOnDeviceButton.doClick() }
+        openDeveloperOptionsButton.addActionListener {
+            selectedIDevice?.let { device ->
+                adbController.openDeveloperOptions(device, ::showSuccess, ::showError)
+            }
+        }
     }
 
     private fun updateDevicesList() {
@@ -301,8 +301,6 @@ class SpockAdbViewer(
     }
 
     private fun setDeveloperOptionsListeners() {
-        enableDisableDontKeepActivities.addActionListener(dontKeepActivitiesActionListener)
-
         enableDisableShowTaps.addActionListener(showTapsActionListener)
 
         enableDisableShowLayoutBounds.addActionListener(showLayoutBoundsActionListener)

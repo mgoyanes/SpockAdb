@@ -250,16 +250,6 @@ class AdbControllerImp(
        }, error)
     }
 
-    override fun enableDisableDontKeepActivities(
-        device: IDevice,
-        success: (message: String) -> Unit,
-        error: (message: String) -> Unit
-    ) {
-        execute({
-            val result = EnableDisableDontKeepActivitiesCommand().execute(Any(), project, device)
-            success(result)
-        }, error)
-    }
     override fun enableDisableShowTaps(
         device: IDevice,
         success: (message: String) -> Unit,
@@ -338,6 +328,17 @@ class AdbControllerImp(
     ) {
         execute({
             val result = InputOnDeviceCommand().execute(input, project, device)
+            success(result)
+        }, error)
+    }
+
+    override fun openDeveloperOptions(
+        device: IDevice,
+        success: (message: String) -> Unit,
+        error: (message: String) -> Unit
+    ) {
+        execute({
+            val result = OpenDeveloperOptionsCommand().execute(project, device)
             success(result)
         }, error)
     }
